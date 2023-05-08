@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>HolbertonBnB</title>
+		<link rel="icon" href="{{ url_for('static', filename='images/icon.png') + '?' + cache_id }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/reset.css') + '?' + cache_id }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/4-common.css') + '?' + cache_id }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/3-header.css') + '?' + cache_id }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/3-footer.css') + '?' + cache_id }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/6-filters.css') + '?' + cache_id }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/100-places.css') + '?' + cache_id }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/font-awesome.css') + '?' + cache_id }}">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="{{ url_for('static', filename='scripts/101-hbnb.js') + '?' + cache_id }}"></script>
+	</head>
+
+	<body>
+		<header>
+			<div id="api_status" class="available"></div>
+		</header>
+		<main>
+			<div class="container">
+				<section class="filters">
+					<div class="locations">
+						<h3>States</h3>
+						<h4>&nbsp;</h4>
+						<ul class="popover">
+							{% for state in states|sort(attribute='name') %}
+							<h2>
+								<input type="checkbox" data-id="{{ state.id }}" data-name="{{ state.name }}">
+								{{ state.name }}
+								</input>
+							</h2>
+							<ul>
+								{% for city in state.cities|sort(attribute='name') %}
+								<li>
+									<input type="checkbox" data-id="{{ city.id }}" data-name="{{ city.name }}">
+									{{ city.name }}
+									</input>
+								</li>
+								{% endfor %}
+							</ul>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="amenities">
+						<h3>Amenities</h3>
+						<h4>&nbsp;</h4>
+						<ul class="popover">
+							{% for amenity in amens|sort(attribute='name') %}
+							<li>
+								<input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">
+								{{ amenity.name }}
+								</input>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					<button>Search</button>
+				</section>
+				<section class="places">
+					<h1>Places</h1>
+					<h2>Reviews<span id="show-reviews" class="show-reviews" onclick="showReviews()">show</span></h2>
+					<ul id="reviews" class="reviews">
+						<li>
+							<div class="review-avatar">
+								<img src="{{ url_for('static', filename='images/avatar.png') }}">
+							</div>
+							<div class="review-details">
+								<div class="review-username">John Doe</div>
+								<div class="review-date">May 8th, 2023</div>
+								<div class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec metus vel elit sagittis auctor. Vivamus fermentum velit in turpis dignissim imperdiet. Nam id sem sit amet ex blandit interdum. Aliquam sed libero luctus, posuere neque eu, ullamcorper magna. Vestibulum gravida lacus sit amet enim bibendum ultricies. Etiam scelerisque elit lectus, id consectetur sapien placerat sit amet. Suspendisse id ligula nec mi bibendum feugiat. Sed luctus lorem at sapien feugiat, sed tristique ipsum consequat. Phasellus ultrices felis sit amet augue rutrum, sed commodo mauris eleifend. Aliquam quis risus eget diam facilisis posuere non at erat.</div>
+						</li>
+					</ul>
+					<a href="#" class="see-all-reviews">See all reviews</a>
+				</section>
+							</div>
+							<footer></footer>
+							
+							<script src="static/scripts/101-hbnb.js"></script>
+	</body>
+</html>
